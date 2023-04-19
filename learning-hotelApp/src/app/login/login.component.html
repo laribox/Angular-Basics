@@ -1,0 +1,10 @@
+<p>login works!</p>
+<form (submit)="login()" #loginForm="ngForm">
+  <div class="form-control">
+    <label for="email">email</label>
+    <input [(ngModel)]="email" type="text" name="email" id="email" />
+    <label for="ps">password</label>
+    <input [(ngModel)]="password" type="text" name="ps" id="ps" />
+    <input type="submit" value="Log In" />
+  </div>
+</form>

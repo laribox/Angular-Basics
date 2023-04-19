@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>postId</th>
+    <th>Id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>body</th>
+  </tr>
+  <tr *ngFor="let comment of comments$ | async">
+    <td>{{ comment.postId }}</td>
+    <td></td>
+    <td>{{ comment.id }}</td>
+    <td></td>
+    <td>{{ comment.name }}</td>
+    <td></td>
+    <td>{{ comment.email }}</td>
+    <td></td>
+    <td>{{ comment.body }}</td>
+    <td></td>
+  </tr>
+</table>

@@ -1,0 +1,98 @@
+{{ roomsForm.pristine }}
+{{ roomsForm.valid }}
+{{ roomsForm.invalid }}
+{{ roomsForm.value | json }}
+<form (ngSubmit)="addRoom(roomsForm)" #roomsForm="ngForm">
+  <div class="alert alert-success" [hidden]="hidden">
+    {{ message }}
+  </div>
+  <div class="form-group">
+    <mat-form-field class="max-width">
+      <mat-label>room Type</mat-label>
+      <input
+        hotelValid
+        color="blue"
+        required
+        #roomType="ngModel"
+        matInput
+        type="text"
+        name="roomType"
+        [(ngModel)]="room.roomType"
+      />
+      <!-- <mat-hint *ngIf="!roomsForm.pristine">
+        Type is <strong>required</strong>
+      </mat-hint> -->
+
+      <mat-error *ngIf="roomType.errors && roomType.invalid">
+        {{ roomType.errors | json }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>amenities</mat-label>
+      <input
+        hotelHover
+        color="steelblue"
+        required
+        matInput
+        type="text"
+        name="amenities"
+        [(ngModel)]="room.amenities"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>price</mat-label>
+      <input
+        required
+        matInput
+        type="number"
+        name="price"
+        [(ngModel)]="room.price"
+      />
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field class="full-width">
+      <mat-label>photos</mat-label>
+      <input
+        required
+        matInput
+        type="text"
+        name="photos"
+        [(ngModel)]="room.photos"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>checkinTime</mat-label>
+      <input
+        matInput
+        required
+        type="datetime"
+        name="checkinTime"
+        [(ngModel)]="room.checkinTime"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>checkoutTime</mat-label>
+      <input
+        matInput
+        required
+        type="datetime"
+        name="checkoutTime"
+        [(ngModel)]="room.checkoutTime"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>rating</mat-label>
+      <input matInput type="text" name="rating" [(ngModel)]="room.rating" />
+    </mat-form-field>
+  </div>
+  <button
+    [disabled]="roomsForm.invalid"
+    class="btn btn-primary"
+    type="submit"
+    style="float: right"
+  >
+    submit
+  </button>
+</form>

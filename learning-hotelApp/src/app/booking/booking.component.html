@@ -1,0 +1,75 @@
+<p>booking works!</p>
+{{ bookingForm.value | json }}
+<form [formGroup]="bookingForm">
+  <input type="text" formControlName="roomId" />
+  <input type="text" formControlName="bookingId" />
+  <div formGroupName="address">
+    <input type="text" name="" id="" formControlName="city" />
+  </div>
+  <div style="display: flex; justify-content: space-evenly; width: 50%">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addPassport()"
+    >
+      Add Passport
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="removePassport()"
+    >
+      remove passport
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addGuest()"
+    >
+      Add guest
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="removeGuests()"
+    >
+      remove guests
+    </button>
+  </div>
+
+  <div *ngIf="bookingForm.get('passport')">
+    <input type="text" formControlName="passport" />
+  </div>
+  <div formArrayName="guests" *ngIf="bookingForm.get('guests')">
+    <div *ngFor="let guest of guests.controls; let i = index">
+      <div [formGroupName]="i">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Personal data </mat-panel-title>
+            <mat-panel-description>
+              guest {{ i + 1 }}
+              <mat-icon>account_circle</mat-icon>
+              <mat-icon (click)="removeGuest(i)">remove_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Age</mat-label>
+            <input matInput formControlName="age" type="number" min="1" />
+          </mat-form-field>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+  <!-- create input with mat forms now -->
+</form>

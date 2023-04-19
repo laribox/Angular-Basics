@@ -1,0 +1,31 @@
+<h2 [style]="color">welcome to {{ hotelName }}</h2>
+
+<div [hidden]="hide">
+  <div [innerHTML]="roomCount"></div>
+</div>
+<h1>number of rooms {{ roomsCount$ | async }}</h1>
+<div *ngIf="rooms.availableRooms > 0">rooms available</div>
+
+<div *ngIf="roomsStream$ | async as rooms">
+  <button routerLink="add" class="btn btn-success">add room</button>
+  <button (click)="deleteRoom()" class="btn btn-danger">delete room</button>
+  <input
+    type="number"
+    [formControl]="priceFilter"
+    class="form-control"
+    placeholder="price"
+  />
+  {{ priceFilter | json }}
+  <hotel-rooms-list
+    [rooms]="rooms"
+    [keys]="keys"
+    [price]="priceFilter.value!"
+    (selectedRoom)="selectedRoom($event)"
+  ></hotel-rooms-list>
+
+  {{ result | json }}
+</div>
+
+{{ error$ | async }}
+<button (click)="toggle()">toggle</button>
+<div class="nested-container"><router-outlet> </router-outlet></div>

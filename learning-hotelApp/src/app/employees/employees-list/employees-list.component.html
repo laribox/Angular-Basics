@@ -1,0 +1,22 @@
+<p>employees-list works!</p>
+
+<table style="width: 100%">
+  <tr>
+    <th>name</th>
+    <th>role</th>
+    <th>shift</th>
+  </tr>
+  <tr *ngFor="let employee of employeesList">
+    <td>{{ employee.name }}</td>
+    <td>{{ employee.role }}</td>
+    <td>{{ employee.shift }}</td>
+  </tr>
+</table>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>

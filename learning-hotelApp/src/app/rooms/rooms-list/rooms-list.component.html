@@ -1,0 +1,32 @@
+Rooms List
+
+<table class="table">
+  <tr>
+    <th *ngFor="let key of keys; let i = index">
+      {{ key }}
+    </th>
+    <th>select</th>
+  </tr>
+  <tr
+    [ngClass]="e ? 'even' : 'odd'"
+    *ngFor="let room of rooms | filter : price; let e = even; let o = odd"
+  >
+    <td>{{ room.roomNumber }}</td>
+    <td>{{ room.roomType }}</td>
+    <td>{{ room.amenities }}</td>
+    <td>{{ room.price | currency }}</td>
+    <td><img src="{{ room.photos }}" alt="" width="50px" height="50px" /></td>
+    <td>{{ room.checkinTime | date : "dd/MM/yyyy" }}</td>
+    <td>{{ room.checkoutTime | date : "dd/MM/yyyy" }}</td>
+    <td>{{ room.rating }}</td>
+    <td>
+      <button
+        type="button"
+        class="btn btn-success"
+        [routerLink]="['/booking', room.roomNumber]"
+      >
+        Book Now
+      </button>
+    </td>
+  </tr>
+</table>
